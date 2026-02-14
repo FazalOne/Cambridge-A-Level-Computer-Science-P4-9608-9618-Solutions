@@ -43,10 +43,12 @@ def ReadData():
     return DataArray
 
 def PrintTrees(Tree1):
+    out = "{} has a maximum height {}, a maximum width {}, and grows {} cm a year.".format(Tree1.GetTreeName(), Tree1.GetMaxHeight(), Tree1.GetMaxWidth(), Tree1.GetGrowth()) #STRING
     if Tree1.GetEvergreen() == "Yes":
-        print('''{} has a maximum height {}, a maximum width {}, and grows {} cm a year. It does not lose its leaves.'''.format(Tree1.GetTreeName(), Tree1.GetMaxHeight(), Tree1.GetMaxWidth(), Tree1.GetGrowth()))
+        out += "\nIt does not lose its leaves."
     else:
-        print('''{} has a maximum height {}, a maximum width {}, and grows {} cm a year. It loses its leaves each year.'''.format(Tree1.GetTreeName(), Tree1.GetMaxHeight(), Tree1.GetMaxWidth(), Tree1.GetGrowth()))
+        out += "\nIt loses its leaves each year."
+    print(out)
 
 def ChooseTree(DataArray):
     TreeSearch = [] #ARRAY OF TREE
@@ -77,4 +79,5 @@ def ChooseTree(DataArray):
         print("{} will take {} years to grow to its max height".format(chosentree.GetTreeName(),time))
 
 Trees = ReadData()
+PrintTrees(Trees[0])
 ChooseTree(Trees)

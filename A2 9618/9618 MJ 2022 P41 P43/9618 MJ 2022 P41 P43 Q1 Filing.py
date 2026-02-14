@@ -1,9 +1,11 @@
-FileData = [["" for x in range(2)] for i in range(11)] #2D ARRAY OF STRINGS
 def ReadHighScores():
-    with open("HighScore.txt", 'r') as File:
-        for x in range(0, 10):
-            FileData[x][0] = File.readline()[:3]
-            FileData[x][1] = File.readline()
+    try:
+        with open("HighScore.txt", 'r') as File:
+            for x in range(0, 10):
+                FileData[x][0] = File.readline()[:3]
+                FileData[x][1] = File.readline()
+    except FileNotFoundError:
+        print("File not found")
 def OutputHighScores():
     for x in range(0, 11):
         print(str(FileData[x][0]) + " " + str(FileData[x][1]))
@@ -24,7 +26,8 @@ def WriteTopTen():
         for x in range(0, 10):
             Filename.write(str(FileData[x][0]) + '\n')
             Filename.write(str(FileData[x][1]) + '\n')
-
+            
+FileData = [["" for x in range(2)] for i in range(11)] #2D ARRAY OF STRINGS
 ReadHighScores()
 print("Before")
 OutputHighScores()

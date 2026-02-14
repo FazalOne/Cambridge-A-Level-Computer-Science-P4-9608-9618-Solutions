@@ -43,3 +43,5 @@ StoreItems()
 returnVal = Dequeue() #INTEGER
 if returnVal != False:
     print("Data dequeued: ", returnVal)
+else:
+    print("Queue is empty!")

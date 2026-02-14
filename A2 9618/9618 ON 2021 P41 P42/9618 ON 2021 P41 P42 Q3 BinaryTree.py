@@ -1,4 +1,4 @@
-ArrayNodes=[[0 for X in range(3)] for Y in range(20)] #2D ARRAY OF INTEGERS
+ArrayNodes = [[0 for X in range(3)] for Y in range(20)] #2D ARRAY OF INTEGERS
 RootPointer = -1 #INTEGER
 FreeNode = 0 #INTEGER
 

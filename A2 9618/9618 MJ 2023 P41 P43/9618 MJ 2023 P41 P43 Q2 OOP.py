@@ -23,7 +23,7 @@ class Vehicle:
             self.CurrentSpeed = self.MaxSpeed
         self.HorizontalPosition += self.CurrentSpeed
     def Details(self):
-        return "Horizontal Position: {}, Current Speed: {}".format(self.HorizontalPosition, self.CurrentSpeed)
+        return "ID: {}, Horizontal Position: {}, Current Speed: {}".format(self.ID, self.HorizontalPosition, self.CurrentSpeed)
 
 class Helicopter(Vehicle):
     def __init__(self, ID, MaxSpeed, IncreaseAmount, VChange, MaxHeight):

@@ -1,4 +1,3 @@
-DataArray = [0 for i in range (100)] #ARRAY OF INTEGERS
 def ReadFile():
     global DataArray
     try:
@@ -12,7 +11,7 @@ def FindValues():
     global DataArray
     DataToFind = -1 #INTEGER
     while DataToFind < 1 or DataToFind > 100:
-        DataToFind = int(input("Enter a number between 1 and 100"))
+        DataToFind = int(input("Enter a number between 1 and 100: "))
     Total = 0 #INTEGER
     for X in range(0, 99):
         if DataArray[X] == DataToFind:
@@ -27,9 +26,8 @@ def BubbleSort():
             if DataArray[J] > DataArray[J+1]:
                 DataArray[J], DataArray[J+1] = DataArray[J+1], DataArray[J]
 
+DataArray = [0 for i in range (100)] #ARRAY OF INTEGERS
 ReadFile()
 print("The number appears " + str(FindValues()) + " times")
 BubbleSort()
 print(DataArray)
-ReadFile()
-print("The number appears " + str(FindValues()) + " times")

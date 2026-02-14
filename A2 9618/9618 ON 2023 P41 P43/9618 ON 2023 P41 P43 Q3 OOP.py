@@ -1,6 +1,3 @@
-from unittest import case
-
-
 class Character: 
 	def __init__(self, XPositionP, YPositionP, NameP):
 		self.XPosition = XPositionP #INTEGER

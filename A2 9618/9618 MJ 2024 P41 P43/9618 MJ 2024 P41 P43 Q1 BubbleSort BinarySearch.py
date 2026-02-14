@@ -1,11 +1,10 @@
 def Initialize():
     global DataStored, NumberItems
-    items = 0 #INTEGER
-    while items < 1 or items > 20:
-        items = int(input("Enter the number of items to be stored (1-20): "))
-    for x in range(items): #INTEGER
+    while NumberItems < 1 or NumberItems > 20:
+        NumberItems = int(input("Enter the number of items to be stored (1-20): "))
+    DataStored = [0 for x in range(NumberItems)]
+    for x in range(NumberItems): #INTEGER
         DataStored[x] = int(input("Enter a number: "))
-    NumberItems = items 
 
 def BubbleSort():
     global DataStored, NumberItems
@@ -31,13 +30,13 @@ def BinarySearch(DataToFind):
             u = mid-1
     return -1
 
-DataStored = [0 for x in range(20)] #ARRAY OF INTEGER
+DataStored = [] #ARRAY OF INTEGER
 NumberItems = 0 #INTEGER
 Initialize()
 BubbleSort()
 print(DataStored)
 Search = int(input("Enter a number to find: ")) #INTEGER
-if Search == -1:
+if BinarySearch(Search) == -1:
     print("Value not found")
 else:
     print("Value found at index ",BinarySearch(Search))

@@ -18,14 +18,13 @@ def Pop():
 
 def PrintArray():
     print("StackPointer: ", StackPointer)
-    for x in range(StackPointer):
+    for x in range(len(StackData)):
         print(StackData[x])
 
 StackData = [0 for x in range(10)] #ARRAY OF INTEGER
 StackPointer = 0 #INTEGER
 for x in range(0, 11):
-    TempNumber = int(input("Enter a number: ")) #INTEGER
-    if Push(TempNumber):
+    if Push(int(input("Enter a number: "))):
         print("Stored")
     else:
         print("Stack full")

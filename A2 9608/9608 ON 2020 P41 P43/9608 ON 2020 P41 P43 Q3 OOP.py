@@ -29,7 +29,7 @@ class Quiz:
 
 class Question(Quiz):
     def __init__(self, QName, Question, NoQs, Diff, Ans):
-        super.__init__(QName, Diff, NoQs)
+        super().__init__(QName, Diff, NoQs)
         self.Question = Question #STRING
         self.Answer = Ans #STRING
 

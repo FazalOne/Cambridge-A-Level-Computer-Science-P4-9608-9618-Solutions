@@ -1,4 +1,4 @@
-class Record:
+class NewRecord:
     def __init__(self, pKey, pItem1, pItem2):
         self.Key = pKey #INTEGER
         self.Item1 = pItem1 #INTEGER
@@ -12,8 +12,8 @@ class Record:
 
 def Initialise():
     global HashTable, Spare
-    HashTable = [Record(-1,-1,-1) for x in range(200)] #ARRAY OF Records
-    Spare = [Record(-1,-1,-1) for x in range(100)] #ARRAY OF Records
+    HashTable = [NewRecord(-1,-1,-1) for x in range(200)]
+    Spare = [NewRecord(-1,-1,-1) for x in range(100)]
 def CalculateHash(Key):
     return Key % 200
 def InsertIntoHash(TheRecord):
@@ -32,16 +32,17 @@ def CreateHashTable():
         with open("HashData.txt") as File:
             for Line in File:
                 Data = Line.strip().split(",") #ARRAY OF STRINGS
-                InsertIntoHash(Record(int(Data[0]), int(Data[1]), int(Data[2])))
+                InsertIntoHash(NewRecord(int(Data[0]), int(Data[1]), int(Data[2])))
     except FileNotFoundError:
         print("Cannot open file")
 def PrintSpare():
     global Spare
-    X = 0 #INTEGER
-    while Spare[X].GetKey() != -1:
-        print(Spare[X].GetKey())
-        X += 1
+    for X in Spare:
+        if X.GetKey() != -1:
+            print(X.GetKey())
 
+HashTable = [] #ARRAY OF NewRecords
+Spare = [] #ARRAY OF NewRecords
 Initialise()
 CreateHashTable()
 PrintSpare()
