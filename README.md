@@ -3,8 +3,8 @@ Python implementations of Cambridge A-Level Computer Science Paper 4 solutions.
 ## 📚 Syllabus Coverage
 
 ### 9608 Syllabus Includes:
-- Data Structures (Linked Lists, Stacks, Queues, Binary Trees)
-- Algorithms (Sorting, Searching, Recursion)
+- Data Structures (Singly Linked Lists, Stacks, Queues, Circular Queues, Binary Search Trees)
+- Algorithms (Bubble Sort, Insertion Sort, Linear Search, Binary Search, Hashing, Recursion)
 - OOP Concepts
 - File and Exception Handling
 
