@@ -1,42 +1,43 @@
 def RecursiveInsertion(IntegerArray, NumberElements):
     if NumberElements <= 1:
         return IntegerArray
-    RecursiveInsertion(IntegerArray,NumberElements - 1)
+    RecursiveInsertion(IntegerArray, NumberElements - 1)
     LastItem = IntegerArray[NumberElements - 1] #INTEGER
     CheckItem = NumberElements - 2 #INTEGER
-    while CheckItem >= 0 and IntegerArray[CheckItem] > LastItem:
+    while CheckItem >= 0 and IntegerArray[CheckItem] >= LastItem:
         IntegerArray[CheckItem + 1] = IntegerArray[CheckItem]
-        CheckItem = CheckItem - 1
+        CheckItem -= 1
     IntegerArray[CheckItem + 1] = LastItem
     return IntegerArray
 
 def IterativeInsertion(IntegerArray, NumberElements):
-    while NumberElements > 0:
+    while NumberElements > 1:
         LastItem = IntegerArray[NumberElements - 1] #INTEGER
         CheckItem = NumberElements - 2 #INTEGER
-        while CheckItem >= 0 and IntegerArray[CheckItem] > LastItem:
+        while CheckItem >= 0 and IntegerArray[CheckItem] >= LastItem:
             IntegerArray[CheckItem + 1] = IntegerArray[CheckItem]
-            CheckItem = CheckItem - 1
+            CheckItem -= 1
+        IntegerArray[CheckItem + 1] = LastItem
         NumberElements -= 1
     return IntegerArray
 
-def BinarySearch(IntegerArray, First, Last, ToFind):
+def BinarySearchRecursive(IntegerArray, First, Last, ToFind):
     if First > Last:
         return -1
     Middle = (Last + First) // 2 #INTEGER
     if IntegerArray[Middle] == ToFind:
         return Middle
     elif IntegerArray[Middle] > ToFind:
-        return BinarySearch(IntegerArray, First, Middle - 1, ToFind)
+        return BinarySearchRecursive(IntegerArray, First, Middle - 1, ToFind)
     else:
-        return BinarySearch(IntegerArray, Middle + 1, Last, ToFind)
+        return BinarySearchRecursive(IntegerArray, Middle + 1, Last, ToFind)
 
 NumberArray = [100, 85, 644, 22, 15, 8, 1] #ARRAY OF INTEGER
-SortedArray = RecursiveInsertion(NumberArray, len(NumberArray)) #ARRAY OF INTEGER
+SortedArray = RecursiveInsertion(NumberArray, len(NumberArray))
 print("Recursive", SortedArray)
-Sorted2Array = IterativeInsertion(NumberArray, len(NumberArray)) #ARRAY OF INTEGER
-print("Iterative", Sorted2Array)
-Position = BinarySearch(Sorted2Array, 0, len(NumberArray)-1, 644) #INTEGER
+SortedArray = IterativeInsertion(NumberArray, len(NumberArray))
+print("Iterative", SortedArray)
+Position = BinarySearchRecursive(NumberArray, 0, len(NumberArray)-1, 644)
 if Position == -1:
     print("Not found")
 else:

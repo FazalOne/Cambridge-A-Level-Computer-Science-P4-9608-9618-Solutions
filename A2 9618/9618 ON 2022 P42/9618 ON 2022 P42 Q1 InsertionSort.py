@@ -4,18 +4,18 @@ def Initialise():
     NumberOfJobs = 0
 
 def AddJob(JobNumber, Priority):
-    global NumberOfJobs, Jobs
+    global Jobs, NumberOfJobs
     if NumberOfJobs == 100:
         print("Not added")
     else:
-        Jobs[NumberOfJobs] = [JobNumber,Priority]
-        print("Added")
+        Jobs[NumberOfJobs] = [JobNumber, Priority]
         NumberOfJobs += 1
+        print("Added")
 
 def InsertionSort():
     global Jobs, NumberOfJobs
     for i in range(1, NumberOfJobs):
-        Current = Jobs[i] #ARRAY OF INTEGER
+        Current = Jobs[i]
         while i > 0 and Jobs[i-1][1] > Current[1]:
             Jobs[i] = Jobs[i-1]
             i -= 1
@@ -23,8 +23,8 @@ def InsertionSort():
 
 def PrintArray():
     global Jobs, NumberOfJobs
-    for X in range (0, NumberOfJobs) :
-        print(str(Jobs[X][0]), " priority " , str(Jobs[X][1]))
+    for x in range(NumberOfJobs):
+        print(Jobs[x][0], "priority", Jobs[x][1])
 
 Jobs = [] #2D ARRAY OF INTEGER
 NumberOfJobs = 0 #INTEGER
