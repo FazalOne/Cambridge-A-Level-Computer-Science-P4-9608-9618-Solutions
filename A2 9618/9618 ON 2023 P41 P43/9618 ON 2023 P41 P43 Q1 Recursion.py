@@ -20,5 +20,5 @@ def newRecursiveVowels(Value, x):   #method 2 using index
     return 0 + newRecursiveVowels(Value, x + 1)
 
 print(IterativeVowels("house"))
-print(RecursiveVowels("imagine", 0))
-print(newRecursiveVowels("imagine"))
+print(RecursiveVowels("imagine"))
+print(newRecursiveVowels("imagine", 0))
