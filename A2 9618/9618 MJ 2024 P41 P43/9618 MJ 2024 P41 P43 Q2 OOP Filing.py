@@ -1,9 +1,9 @@
 class Tree:
-    def __init__(self, Name, Growth, MHeight,  MWidth, Green):
+    def __init__(self, Name, Growth, Height, Width, Green):
         self.TreeName = Name #STRING
         self.HeightGrowth = int(Growth) #INTEGER
-        self.MaxHeight = int(MHeight) #INTEGER
-        self.MaxWidth = int(MWidth) #INTEGER
+        self.MaxHeight = int(Height) #INTEGER
+        self.MaxWidth = int(Width) #INTEGER
         self.Evergreen = Green #STRING
     
     def GetTreeName(self):
@@ -21,13 +21,14 @@ def ReadData():
     DataArray = [] #ARRAY OF TREE
     #variant 1
     try:
-        with open("Trees.txt") as file:
-            data = file.read().split("\n") #ARRAY OF STRING
+        with open("Trees.txt", "r") as File:
+            DataArray = File.read().split("\n")
         for x in range(9):
-            data[x] = data[x].split(",") # 2D ARRAY OF STRING
-            DataArray.append(Tree(data[x][0],data[x][1],data[x][2],data[x][3],data[x][4]))
+            DataArray[x] = DataArray[x].split(",")
+            DataArray[x] = Tree(DataArray[x][0], DataArray[x][1], DataArray[x][2], DataArray[x][3], DataArray[x][4])
+        return DataArray
     except FileNotFoundError:
-        print("Sorry, file not found. Check the filepath.")
+        print("Sorry file not found.")
     
     #variant 2
     # DataArray = []
@@ -41,43 +42,46 @@ def ReadData():
     # except FileNotFoundError:
     #     print("Sorry, file not found. Check the filepath.")
     return DataArray
-
+    
 def PrintTrees(Tree1):
-    out = "{} has a maximum height {}, a maximum width {}, and grows {} cm a year.".format(Tree1.GetTreeName(), Tree1.GetMaxHeight(), Tree1.GetMaxWidth(), Tree1.GetGrowth()) #STRING
-    if Tree1.GetEvergreen() == "Yes":
-        out += "\nIt does not lose its leaves."
+    out = f"{Tree1.GetTreeName()} has a maximum height {Tree1.GetMaxHeight()}cm, a maximum width {Tree1.GetMaxWidth()}cm, and grows {Tree1.GetGrowth()}cm a year."
+    if Tree1.GetEvergreen():
+        out += " It does not lose its leaves."
     else:
-        out += "\nIt loses its leaves each year."
+        out += " It loses its leaves each year."
     print(out)
 
 def ChooseTree(DataArray):
-    TreeSearch = [] #ARRAY OF TREE
+    TreeSearch = [] #ARRAY OF Tree
     height = int(input("Enter the max height of tree: ")) #INTEGER
     width = int(input("Enter the max width of tree: ")) #INTEGER
-    evergreen = ""
-    while evergreen not in ["yes", "no"]:
-        evergreen = input("Do you want an evergreen tree? Yes/No: ").lower() #STRING
+    evergreen = "" #STRING
+    while evergreen not in ["yes","no"]:
+        evergreen = input("Do you want an evergreen tree? Yes/No :").lower()
+
     for TreeObj in DataArray:
         if TreeObj.GetMaxHeight() <= height and TreeObj.GetMaxWidth() <= width and TreeObj.GetEvergreen().lower() == evergreen:
             TreeSearch.append(TreeObj)
             PrintTrees(TreeObj)
     if len(TreeSearch) == 0:
-        print("Sorry, no trees met your requirements.")
+        print("Sorry, no trees meet your requirements.")
     else:
-        found = False #BOOLEAN
+        found = False
         while not found:
-            chosentree = input("Enter the name of the tree you have chosen: ").title() #STRING
-            for x in TreeSearch:
-                if x.GetTreeName() == chosentree:
+            chosentree = input("Enter the name of the tree you have chosen: ") #STRING
+            for TreeObj in TreeSearch:
+                if TreeObj.GetTreeName().title() ==  chosentree.title():
                     found = True
-                    chosentree = x
+                    chosentree = TreeObj
                     break
-        buyheight = int(input("Enter the height of the tree at purchase time: ")) #INTEGER
+            if not found:
+                print("Sorry, your chosen tree does not exist. Input the correct name. ")
+        buyheight = int(input("Enter the height of the tree at purchase: ")) #INTEGER
         while buyheight > chosentree.GetMaxHeight():
-            buyheight = int(input("Sorry, the height is greater than the tree's max height. Enter a valid height: "))
+            buyheight = int(input("Sorry, the height is greater than the tree's max height. Please enter a valid height: ")) #INTEGER
         time = (chosentree.GetMaxHeight() - buyheight) / chosentree.GetGrowth() #REAL
-        print("{} will take {} years to grow to its max height".format(chosentree.GetTreeName(),time))
+        print(f"{chosentree.GetTreeName()} will take {time} years to reach its maximum height of {chosentree.GetMaxHeight()}cm. ")
 
-Trees = ReadData()
+Trees = ReadData() #ARRAY OF Tree
 PrintTrees(Trees[0])
 ChooseTree(Trees)
