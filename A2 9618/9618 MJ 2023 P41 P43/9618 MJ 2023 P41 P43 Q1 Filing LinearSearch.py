@@ -1,12 +1,3 @@
-DataArray = [0 for x in range(25)] #ARRAY OF INTEGERS
-with open("Data.txt","r") as file:
-    count = 0 #INTEGER
-    data = file.readline().strip("\n") #STRING
-    while data != "":
-        DataArray[count] = int(data)
-        count += 1
-        data = file.readline().strip("\n")
-
 def PrintArray(data):
     for number in data:
         print(number, end=" ")
@@ -19,6 +10,14 @@ def LinearSearch(data, searchValue):
             count += 1
     return count
 
+DataArray = [0 for x in range(25)] #ARRAY OF INTEGERS
+with open("Data.txt","r") as file:
+    count = 0 #INTEGER
+    data = file.readline().strip("\n") #STRING
+    while data != "":
+        DataArray[count] = int(data)
+        count += 1
+        data = file.readline().strip("\n")
 PrintArray(DataArray)
 searchValue = -1 #INTEGER
 while searchValue < 0 or searchValue > 100:

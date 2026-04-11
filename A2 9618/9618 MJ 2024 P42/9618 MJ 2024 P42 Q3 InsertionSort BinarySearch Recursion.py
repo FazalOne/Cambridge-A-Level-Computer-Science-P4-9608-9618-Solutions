@@ -11,14 +11,13 @@ def RecursiveInsertion(IntegerArray, NumberElements):
     return IntegerArray
 
 def IterativeInsertion(IntegerArray, NumberElements):
-    while NumberElements > 1:
-        LastItem = IntegerArray[NumberElements - 1] #INTEGER
-        CheckItem = NumberElements - 2 #INTEGER
+    for i in range(1, NumberElements):
+        LastItem = IntegerArray[i] #INTEGER
+        CheckItem = i - 1 #INTEGER
         while CheckItem >= 0 and IntegerArray[CheckItem] >= LastItem:
             IntegerArray[CheckItem + 1] = IntegerArray[CheckItem]
             CheckItem -= 1
         IntegerArray[CheckItem + 1] = LastItem
-        NumberElements -= 1
     return IntegerArray
 
 def BinarySearchRecursive(IntegerArray, First, Last, ToFind):
@@ -32,13 +31,18 @@ def BinarySearchRecursive(IntegerArray, First, Last, ToFind):
     else:
         return BinarySearchRecursive(IntegerArray, Middle + 1, Last, ToFind)
 
-NumberArray = [100, 85, 644, 22, 15, 8, 1] #ARRAY OF INTEGER
-SortedArray = RecursiveInsertion(NumberArray, len(NumberArray))
+NumberArray1 = [100, 85, 644, 22, 15, 8, 1] #ARRAY OF INTEGER
+NumberArray2 = [100, 85, 644, 22, 15, 8, 1] #ARRAY OF INTEGER 
+SortedArray = RecursiveInsertion(NumberArray1, len(NumberArray1))
 print("Recursive", SortedArray)
-SortedArray = IterativeInsertion(NumberArray, len(NumberArray))
+SortedArray = IterativeInsertion(NumberArray2, len(NumberArray2))
 print("Iterative", SortedArray)
-Position = BinarySearchRecursive(NumberArray, 0, len(NumberArray)-1, 644)
+Position = BinarySearchRecursive(NumberArray1, 0, len(NumberArray1)-1, 644)
 if Position == -1:
     print("Not found")
 else:
     print(Position)
+
+# lists are passed by reference and modified in place in Python 
+# As code reaches line38 IterativeInsertion(NumberArray)), it passes already sorted list..
+# So we create an array copy NumberArray2, to show that IterativeInsertion correctly sorts an unsorted list

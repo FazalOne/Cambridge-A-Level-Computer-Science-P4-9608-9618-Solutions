@@ -14,8 +14,7 @@ def bubbleSort():
 
 arrayData = [10, 5, 6, 7, 1, 12, 13, 15, 21, 8] #ARRAY OF INTEGER
 searchValue = int(input("Enter the number to search for: ")) #INTEGER
-returnValue = linearSearch(searchValue) #BOOLEAN
-if returnValue:
+if linearSearch(searchValue):
     print("It was found")
 else:
     print("It was not found")
